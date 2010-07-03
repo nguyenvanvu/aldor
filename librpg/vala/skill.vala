@@ -12,37 +12,40 @@ namespace LibRPG {
 		
 		uint SKILL_MAX_NUM = 4;
 		
+		public Ability[] SKILLS_ABILITY;
+		private string[] SKILL_NAMES;
 		
+		void skill_stuff_load() {
 		
-		/* ------------------- We may want to pass this to some kind of storage system later ------ */
-		/* abilities - skills matching: */
-		private Ability[] SKILLS_ABILITY = new Ability[SKILL_MAX_NUM];
-		SKILLS_ABILITY[SKILL.DODGE] = ABILITY_DEXTERITY;
-		SKILLS_ABILITY[SKILL.SWIM] = ABILITY_STRENGTH;
-		//...
+			/* ------------------- We may want to pass this to some kind of storage system later ------ */
+			/* abilities - skills matching: */
+			SKILLS_ABILITY = new Ability[SKILL_MAX_NUM];
+			SKILLS_ABILITY[SKILL.DODGE] = ABILITY.DEXTERITY;
+			SKILLS_ABILITY[SKILL.SWIM] = ABILITY.STRENGTH;
+			//...
+			
+			
+			
+			/* skill names: */
+			SKILL_NAMES = new string[SKILL_MAX_NUM];
+			SKILL_NAMES[SKILL.DODGE] = "esquiva";
+			SKILL_NAMES[SKILL.SWIM] = "nadar";
+			//...
+			
+			/*-------------------------------------------*/
 		
-		
-		
-		/* skill names: */
-		private string[] SKILL_NAMES = new string[SKILL_MAX_NUM];
-		SKILL_NAMES[SKILL.DODGE] = "esquiva";
-		SKILL_NAMES[SKILL.SWIM] = "nadar";
-		//...
-		
-		/*-------------------------------------------*/
-		
-		
+	}
 		
 
 		public class SkillList {
 				
-				private Skill[] list = new Skill[SKILL_MAX_NUM];
+				private uint[] list = new uint[SKILL_MAX_NUM];
 				
 				
-				public uint get_by_id(Skill skill_id) {
+				public uint get_base_by_id(Skill skill_id) {
 					return list[skill_id];
 				}
-				public void set_by_id(Skill skill_id, uint n) {
+				public void set_base_by_id(Skill skill_id, uint n) {
 					list[skill_id] = n;
 				}
 				
