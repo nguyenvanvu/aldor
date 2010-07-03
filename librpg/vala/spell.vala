@@ -1,0 +1,5 @@
+namespace LibRPG {
+    namespace DD {
+		
+	}	
+}
