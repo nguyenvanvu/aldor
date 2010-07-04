@@ -31,8 +31,8 @@ namespace LibRPG {
 				int horiz = 0;
 				var coord = InventoryCoord();
 				
-				for(int j = 0; j<INVENTORY_HEIGHT; j++) {
-					for(int i = 0; i<INVENTORY_WIDTH; i++) {
+				for(int j = 0; j<=INVENTORY_HEIGHT-item.height; j++) {
+					for(int i = 0; i<=INVENTORY_WIDTH-item.width; i++) {
 						
 						
 						if(table[j,i]==null) {
@@ -46,7 +46,10 @@ namespace LibRPG {
 								for(int k = i-horiz; k<=item.width && ok; k++) {
 									
 									for(uint z = j; z-j<item.height && ok; z++) {
-											if(table[z,k]!=null) ok=false; 
+											if(table[z,k]!=null) {
+												ok=false; 
+												horiz=0;
+											}
 									}
 									
 								}

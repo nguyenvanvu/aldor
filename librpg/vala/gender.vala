@@ -1,9 +1,9 @@
 namespace LibRPG {
     namespace DD {
 		
-		[SimpleType] public struct Gender : uint { }
+		//[SimpleType] public struct Gender : uint { }
 			
-		enum GENDER {
+		enum Gender {
 			NONE,
 			UNKNOWN,
 			MALE,

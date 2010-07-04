@@ -1,10 +1,10 @@
 namespace LibRPG {
     namespace DD {
 		
-		[SimpleType] public struct Race : uint { }
+		//[SimpleType] public struct Race : uint { }
 		
 		
-		enum RACE {
+		enum Race {
 			DWARF,
 			ELF,
 			HUMAN,

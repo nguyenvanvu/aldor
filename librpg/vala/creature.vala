@@ -17,7 +17,7 @@ namespace LibRPG {
 				public uint height { get; set; }
 				public uint weight { get; set; }
 				public Race race { get; set; default = 0; }
-				public Gender gender { get; set; default = GENDER.UNKNOWN; }
+				public Gender gender { get; set; default = Gender.UNKNOWN; }
 			
 			/* Non-Standard getters/setters */
 				public uint skill_base_get(Skill id) {
