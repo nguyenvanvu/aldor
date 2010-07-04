@@ -4,7 +4,7 @@ namespace LibRPG {
 		
 		public enum ItemType {
 			ARMOR,
-			HELM,
+			HELMET,
 			SHIELD,
 			WEAPON,
 			RANGED_WEAPON,

@@ -8,7 +8,6 @@ namespace LibRPG {
 				//private ClassInfo _classes;
 				private SkillList sl;
 				private AbilityList al;
-				private Inventory inv;
 				
 			/* Standard getters/setters */
 				public uint uid { get; private set; default = 0; }
@@ -18,7 +17,10 @@ namespace LibRPG {
 				public uint weight { get; set; }
 				public Race race { get; set; default = 0; }
 				public Gender gender { get; set; default = Gender.UNKNOWN; }
-			
+				public Alignment alignment { get; set; }
+				public Inventory inventory { get; set; }
+				public Equipment equipment { get; set; }
+				
 			/* Non-Standard getters/setters */
 				public uint skill_base_get(Skill id) {
 					return sl.get_base_by_id(id);
