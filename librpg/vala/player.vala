@@ -1,4 +1,4 @@
-namespace LibRPG {
+namespace RPG {
     namespace DD {
 	
 		

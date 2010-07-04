@@ -1,13 +1,14 @@
-namespace LibRPG {
+namespace RPG {
     namespace DD {
 		
-		class Creature : Object {
+		public class Creature : Object {
 		
 			/* Private elements */
 			
 				//private ClassInfo _classes;
 				private SkillList sl;
 				private AbilityList al;
+				private string sheet_path;
 				
 			/* Standard getters/setters */
 				public uint uid { get; private set; default = 0; }
@@ -45,6 +46,20 @@ namespace LibRPG {
 				public uint ability_mod_get(Ability id) {
 					return al.get_mod_by_id(id);
 				}
+				
+				
+				/* Constructors */
+				
+				public Creature.from_file(string path) {
+					sheet_path = path;
+					var reader = new Xml.TextReader.filename(path);
+					reader.read();
+					reader.move_to_element ();
+					stdout.printf(reader.name());
+					
+				}
+				
+				
 				
 		} 
 	}	

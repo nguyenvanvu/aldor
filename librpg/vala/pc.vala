@@ -1,11 +1,10 @@
-namespace LibRPG {
+namespace RPG {
     namespace DD {
 		
 		
 		class PC : Creature {
 			
 			private Player _player;
-			private string sheet_path;
 			
 			
 		}
