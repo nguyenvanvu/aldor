@@ -10,9 +10,11 @@ int main(string[] args) {
 				return 1;
 		}
 		
+		rpg_init();
+		
 		var pc = new Creature.from_file(args[1]);
 		
-		
+		stdout.printf("\n\n\n\nCharacter "+pc.name+" "+pc.surname+" has "+pc.age.to_string()+" years\n");
 		
 		
         return 0;

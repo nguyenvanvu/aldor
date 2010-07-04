@@ -13,6 +13,7 @@ namespace RPG {
 			/* Standard getters/setters */
 				public uint uid { get; private set; default = 0; }
 				public string name { get; set; default = "unknown"; }
+				public string surname { get; set; default = "unknown"; }
 				public uint age { get; set; default = 0; }
 				public uint height { get; set; }
 				public uint weight { get; set; }
@@ -50,17 +51,82 @@ namespace RPG {
 				
 				/* Constructors */
 				
+				/* ejemplo basico para ver como funciona la clase TextReader : */
+				/*
 				public Creature.from_file(string path) {
 					sheet_path = path;
 					var reader = new Xml.TextReader.filename(path);
 					reader.read();
-					reader.move_to_element ();
-					stdout.printf(reader.name());
+					//reader.move_to_element ();
+					stdout.printf("holaa\n");
+					stdout.printf(reader.name()+"\n");
+					
+					int n = reader.attribute_count();
+					stdout.printf("Nombre d'atributs: "+n.to_string()+"\n");
+					
+					reader.move_to_first_attribute();
+					stdout.printf(reader.name()+"\n"); 
+					reader.read_attribute_value();
+					stdout.printf(reader.value()+"\n");
+					
+					reader.read();
+					reader.read();
+					stdout.printf(reader.name()+"\n");
+					reader.read();
+					stdout.printf(reader.value()+"\n");
+					reader.close();
+					
+				}*/
+				
+			public Creature.from_file(string path) {
+				sheet_path = path;
+				var reader = new Xml.TextReader.filename(path);
+				
+				string name, val;
+				//foreach element:
+				while(reader.read()==1) {
+					name = reader.name();
+					stdout.printf(name+"\n");
+					
+					reader.read();
+					if(reader.has_value()==1) {
+						val = reader.value();
+						stdout.printf(val+"\n");
+						
+
+						
+						switch(name) {
+							
+						case "name":
+								this.name=val;
+								reader.read();
+								reader.read();
+								break;
+						case "surname":
+								this.surname=val;
+								reader.read();
+								reader.read();
+								break;
+						case "age":
+								this.age=(uint) val.to_int;
+								reader.read();
+								reader.read();
+								break;
+						default:
+								stdout.printf("UNKNOWN OPTION: "+name+"\n");
+								break;
+						}
+						
+						
+					} else stdout.printf("<No Value>\n");
+					
 					
 				}
 				
+				reader.close();
 				
-				
+			}
+								
 		} 
 	}	
 }
