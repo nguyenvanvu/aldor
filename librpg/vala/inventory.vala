@@ -5,6 +5,12 @@ namespace LibRPG {
 		struct InventoryCoord {
 			int x;
 			int y;
+			bool valid;
+		}
+		
+		struct InventorySlot {
+			Item item;
+			bool occupied;
 		}
 		
 		//in slots
@@ -14,18 +20,27 @@ namespace LibRPG {
 		
 		public class Inventory : Object {
 			
-			private Item[,] table = new Item[INVENTORY_HEIGHT,INVENTORY_WIDTH];
+			
+			/*Inventory is a matrix of slots. each object in the inventory may occupy 1 or more slots.
+			 * Slot on the top-left corner has the Item information and occupied set to true. 
+			 * Other slots occupied by the object has Item=null and occupied set to true.
+			 * Free slots has Item=null and occupied set to false 
+			 */ 
+			
+			
+			private InventorySlot[,] table = new InventorySlot[INVENTORY_HEIGHT,INVENTORY_WIDTH];
 			
 			
 			private void Inventory() {
 					//set all slots initially to null
 					foreach(var slot in table) {
-						slot = null;
+						slot.item = null;
+						slot.occupied = false;
 					}
 			}
 			
 			
-			//x=-1 if there's no place
+			//coord.valid=false if there's no place
 			private InventoryCoord find_place_for_item(Item item) {
 				
 				int horiz = 0;
@@ -35,7 +50,7 @@ namespace LibRPG {
 					for(int i = 0; i<=INVENTORY_WIDTH-item.width; i++) {
 						
 						
-						if(table[j,i]==null) {
+						if(table[j,i].occupied==false) {
 							
 							horiz++;	
 							
@@ -46,7 +61,7 @@ namespace LibRPG {
 								for(int k = i-horiz; k<=item.width && ok; k++) {
 									
 									for(uint z = j; z-j<item.height && ok; z++) {
-											if(table[z,k]!=null) {
+											if(table[z,k].occupied) {
 												ok=false; 
 												horiz=0;
 											}
@@ -57,6 +72,7 @@ namespace LibRPG {
 								if(ok) {
 										coord.x = i-horiz;
 										coord.y = j;
+										coord.valid=true;
 										return coord;
 								}
 								
@@ -71,16 +87,34 @@ namespace LibRPG {
 					}
 				}
 				
-				coord.x = -1;
+				coord.valid=false;
 				return coord;
+			}
+			
+			private void put_item_in_coords(Item item, InventoryCoord coord) {
+				
+				for(int j = coord.y; j <=coord.y+item.height; j++) {
+					
+						for(int i = coord.x; i<=coord.x+item.width; i++) {
+							
+								table[j,i].item = null;
+								table[j,i].occupied = true;  
+								
+						}
+					
+				}
+				
+				table[coord.y,coord.x].item = item;
+				table[coord.y,coord.x].occupied = true;	
+				
 			}
 			
 			
 			
 			public bool put_item(Item item) {
 					InventoryCoord coord = this.find_place_for_item(item);
-					if(coord.x!=-1) {
-						table[coord.y,coord.x] = item;
+					if(coord.valid) {
+						this.put_item_in_coords(item, coord);
 						return true;
 					}
 					else return false;
