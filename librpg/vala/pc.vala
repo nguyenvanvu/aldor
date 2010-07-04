@@ -5,6 +5,7 @@ namespace LibRPG {
 		class PC : Creature {
 			
 			private Player _player;
+			private string sheet_path;
 			
 			
 		}

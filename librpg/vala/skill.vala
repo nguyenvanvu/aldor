@@ -1,9 +1,9 @@
 namespace LibRPG {
     namespace DD {
 		
-		[SimpleType] public struct Skill : uint { }
+		//[SimpleType] public struct Skill : uint { }
 		
-		enum SKILL {
+		public enum Skill {
 			DODGE=0,
 			RIDE,
 			SWIM,
@@ -20,16 +20,16 @@ namespace LibRPG {
 			/* ------------------- We may want to pass this to some kind of storage system later ------ */
 			/* abilities - skills matching: */
 			SKILLS_ABILITY = new Ability[SKILL_MAX_NUM];
-			SKILLS_ABILITY[SKILL.DODGE] = ABILITY.DEXTERITY;
-			SKILLS_ABILITY[SKILL.SWIM] = ABILITY.STRENGTH;
+			SKILLS_ABILITY[Skill.DODGE] = Ability.DEXTERITY;
+			SKILLS_ABILITY[Skill.SWIM] = Ability.STRENGTH;
 			//...
 			
 			
 			
 			/* skill names: */
 			SKILL_NAMES = new string[SKILL_MAX_NUM];
-			SKILL_NAMES[SKILL.DODGE] = "esquiva";
-			SKILL_NAMES[SKILL.SWIM] = "nadar";
+			SKILL_NAMES[Skill.DODGE] = "esquiva";
+			SKILL_NAMES[Skill.SWIM] = "nadar";
 			//...
 			
 			/*-------------------------------------------*/

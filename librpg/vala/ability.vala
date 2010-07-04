@@ -1,9 +1,7 @@
 namespace LibRPG {
     namespace DD {
 		
-		[SimpleType] public struct Ability : uint { }
-		
-		enum ABILITY {
+		public enum Ability {
 			STRENGTH=0,
 			DEXTERITY,
 			CONSTITUTION,
@@ -21,13 +19,13 @@ namespace LibRPG {
 		
 		
 		public void ability_stuff_load() {
-			ABILITY_NAMES = new string[SKILL_MAX_NUM];
+			ABILITY_NAMES = new string[ABILITY_MAX_NUM];
 			/* ------------------- We may want to pass this to some kind of storage system later ------ */
 		
 			/* skill names: */
 			string[] ABILITY_NAMES = new string[SKILL_MAX_NUM];
-			ABILITY_NAMES[ABILITY.STRENGTH] = "fuerza";
-			ABILITY_NAMES[ABILITY.DEXTERITY] = "destreza";
+			ABILITY_NAMES[Ability.STRENGTH] = "fuerza";
+			ABILITY_NAMES[Ability.DEXTERITY] = "destreza";
 			//...
 			
 			/*-------------------------------------------*/
@@ -35,21 +33,6 @@ namespace LibRPG {
 			
 		}
 
-		
-	/*	
-		enum Whatever {
-			A=0,
-			B,
-			C,
-			D,
-			E
-		}
-		
-		uint NUM = 5;
-		
-		string[] Ar = new string[NUM];
-		Ar[Whatever.B] = "fuerza";
-		*/
 		
 		public class AbilityList {
 				

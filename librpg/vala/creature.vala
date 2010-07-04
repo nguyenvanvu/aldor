@@ -8,11 +8,14 @@ namespace LibRPG {
 				//private ClassInfo _classes;
 				private SkillList sl;
 				private AbilityList al;
+				private Inventory inv;
 				
 			/* Standard getters/setters */
 				public uint uid { get; private set; default = 0; }
 				public string name { get; set; default = "unknown"; }
 				public uint age { get; set; default = 0; }
+				public uint height { get; set; }
+				public uint weight { get; set; }
 				public Race race { get; set; default = 0; }
 				public Gender gender { get; set; default = GENDER.UNKNOWN; }
 			
