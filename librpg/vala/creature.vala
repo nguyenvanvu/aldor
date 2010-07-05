@@ -64,6 +64,8 @@ namespace RPG {
 						
 						var elem = new XmlElement();
 						elem.read_from_TextReader(reader); 	
+						
+						/* DEBUG */
 						if(elem.has_text())
 							stdout.printf(elem.name+" => "+elem.text+"\n");
 						else
@@ -73,6 +75,19 @@ namespace RPG {
 							for(int i=0; i<elem.get_att_amount(); i++) {
 								stdout.printf("\t"+i.to_string()+". "+elem.get_att_name(i)+" = "+elem.get_att_value(i)+"\n");
 							}
+						}
+						
+						/* PARSING */
+						switch(elem.name) {
+							case "name":
+								name = elem.text;
+								break;
+							case "surname":
+								surname = elem.text;
+								break;
+							case "age":
+								age = elem.text.to_int();
+								break;
 						}
 					
 					}
