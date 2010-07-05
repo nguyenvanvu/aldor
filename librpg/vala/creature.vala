@@ -62,22 +62,18 @@ namespace RPG {
 					
 					if(reader.node_type()==Xml.ElementType.ELEMENT_NODE) {
 						
-						int n = reader.attribute_count();
-						stdout.printf(reader.name()+" has "+n.to_string()+" attributes:\n");
-						//stdout.printf("\t\t"+reader.read_string()+"\n");
-						
-						for(int i=0; i<n; i++) {
-							reader.move_to_attribute_no(i);
-							stdout.printf("\tattribute: "+reader.name()+"="+reader.value()+"\n");
+						var elem = new XmlElement();
+						elem.read_from_TextReader(reader); 	
+						if(elem.has_text())
+							stdout.printf(elem.name+" => "+elem.text+"\n");
+						else
+							stdout.printf("\n["+elem.name+"]\n");
+						if(elem.has_attributes()) {
+							stdout.printf("\tAttributes:\n");
+							for(int i=0; i<elem.get_att_amount(); i++) {
+								stdout.printf("\t"+i.to_string()+". "+elem.get_att_name(i)+" = "+elem.get_att_value(i)+"\n");
+							}
 						}
-						reader.read();
-						//stdout.printf("\t\t"+reader.node_type().to_string()+" has value? "+reader.has_value().to_string()+"  "+reader.value()+"\n");
-						if(reader.node_type()==Xml.ElementType.TEXT_NODE) {
-							stdout.printf("\tvalue: "+reader.value()+"\n");
-						} 
-						
-							  
-						
 					
 					}
 					
