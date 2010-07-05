@@ -50,82 +50,47 @@ namespace RPG {
 				
 				
 				/* Constructors */
-				
-				/* ejemplo basico para ver como funciona la clase TextReader : */
-				/*
-				public Creature.from_file(string path) {
-					sheet_path = path;
-					var reader = new Xml.TextReader.filename(path);
-					reader.read();
-					//reader.move_to_element ();
-					stdout.printf("holaa\n");
-					stdout.printf(reader.name()+"\n");
-					
-					int n = reader.attribute_count();
-					stdout.printf("Nombre d'atributs: "+n.to_string()+"\n");
-					
-					reader.move_to_first_attribute();
-					stdout.printf(reader.name()+"\n"); 
-					reader.read_attribute_value();
-					stdout.printf(reader.value()+"\n");
-					
-					reader.read();
-					reader.read();
-					stdout.printf(reader.name()+"\n");
-					reader.read();
-					stdout.printf(reader.value()+"\n");
-					reader.close();
-					
-				}*/
-				
+			
+			
 			public Creature.from_file(string path) {
+				
 				sheet_path = path;
 				var reader = new Xml.TextReader.filename(path);
 				
-				string name, val;
-				//foreach element:
-				while(reader.read()==1) {
-					name = reader.name();
-					stdout.printf(name+"\n");
+				while (reader.read()==1) {
+					// parse based on NodeType
 					
-					reader.read();
-					if(reader.has_value()==1) {
-						val = reader.value();
-						stdout.printf(val+"\n");
+					if(reader.node_type()==Xml.ElementType.ELEMENT_NODE) {
 						
-
+						int n = reader.attribute_count();
+						stdout.printf(reader.name()+" has "+n.to_string()+" attributes:\n");
+						//stdout.printf("\t\t"+reader.read_string()+"\n");
 						
-						switch(name) {
-							
-						case "name":
-								this.name=val;
-								reader.read();
-								reader.read();
-								break;
-						case "surname":
-								this.surname=val;
-								reader.read();
-								reader.read();
-								break;
-						case "age":
-								this.age=(uint) val.to_int;
-								reader.read();
-								reader.read();
-								break;
-						default:
-								stdout.printf("UNKNOWN OPTION: "+name+"\n");
-								break;
+						for(int i=0; i<n; i++) {
+							reader.move_to_attribute_no(i);
+							stdout.printf("\tattribute: "+reader.name()+"="+reader.value()+"\n");
 						}
+						reader.read();
+						//stdout.printf("\t\t"+reader.node_type().to_string()+" has value? "+reader.has_value().to_string()+"  "+reader.value()+"\n");
+						if(reader.node_type()==Xml.ElementType.TEXT_NODE) {
+							stdout.printf("\tvalue: "+reader.value()+"\n");
+						} 
 						
+							  
 						
-					} else stdout.printf("<No Value>\n");
+					
+					}
+					
 					
 					
 				}
+
+				
 				
 				reader.close();
 				
 			}
+			
 								
 		} 
 	}	
