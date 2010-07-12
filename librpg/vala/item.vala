@@ -21,6 +21,7 @@ namespace RPG {
 		
 		public class Item : Object {
 				public string name { get; set; default="unknown";}
+				public string tag { get; private set; default="unknown";}
 				public uint height { get; set; }
 				public uint width { get; set; }
 				public uint texture_path { get; set; }

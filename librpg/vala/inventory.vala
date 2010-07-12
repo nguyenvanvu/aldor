@@ -9,34 +9,79 @@ namespace RPG {
 		}
 		
 		struct InventorySlot {
-			Item item;
-			bool occupied;
+			int id; //id is -1 if slot is empty
+		}
+		
+		
+		private struct InventoryItem {
+				Item item;
+				InventoryCoord coord;
+				bool occupied;
 		}
 		
 		//in slots
-		const uint INVENTORY_WIDTH = 20;
-		const uint INVENTORY_HEIGHT = 8;
+		const uint DEFAULT_INVENTORY_WIDTH = 20;
+		const uint DEFAULT_INVENTORY_HEIGHT = 8;
 		
 		
 		public class Inventory : Object {
 			
 			
-			/*Inventory is a matrix of slots. each object in the inventory may occupy 1 or more slots.
-			 * Slot on the top-left corner has the Item information and occupied set to true. 
-			 * Other slots occupied by the object has Item=null and occupied set to true.
-			 * Free slots has Item=null and occupied set to false 
-			 */ 
+			/*
+			 * Each object inside the inventory has a unique ID representing it.
+			 * This ID can change with time though.
+			 * 
+			 *Inventory consists on 2 structures: 
+			 * 1- Slot matrix (inverted axes!) which has slots, each one 
+			 * 	  having ID set to -1 if there's no item, and to some ID
+			 * 	  if there's some item.
+			 * 2- A vector of InvItem, where the ID of an item is the index 
+			 *    inside this vector.
+			 * 
+			 */
 			
 			
-			private InventorySlot[,] table = new InventorySlot[INVENTORY_HEIGHT,INVENTORY_WIDTH];
+			public uint width { get; private set; default = DEFAULT_INVENTORY_WIDTH; }
+			public uint height { get; private set; default = DEFAULT_INVENTORY_HEIGHT; }
 			
 			
-			private void Inventory() {
-					//set all slots initially to null
+			private InventorySlot[,] table;
+			private InventoryItem[] ilist;
+			
+			public Inventory() {
+				
+					table = new InventorySlot[DEFAULT_INVENTORY_HEIGHT, DEFAULT_INVENTORY_WIDTH];
+					ilist = new InventoryItem[DEFAULT_INVENTORY_WIDTH*DEFAULT_INVENTORY_HEIGHT];
+					
+					//set all slots initially marked as free
 					foreach(var slot in table) {
-						slot.item = null;
-						slot.occupied = false;
+						slot.id = -1;
 					}
+					
+					foreach (var invitem in ilist) {
+							invitem.occupied=false;
+					}
+			}
+			
+			public Item? get_item_by_name(string name) {
+				foreach(var invit in ilist) {
+					if(invit.occupied && invit.item.name==name) return invit.item;
+				}
+				return null;
+			}
+			
+			public Item? get_item_by_tag(string tag) {
+				foreach(var invit in ilist) {
+					if(invit.occupied && invit.item.tag==tag) return invit.item;
+				}
+				return null;
+			}
+			
+			public bool has_item(Item item) {
+				foreach(var invit in ilist) {
+					if(invit.occupied && invit.item==item) return true;
+				}
+				return false;
 			}
 			
 			
@@ -46,11 +91,11 @@ namespace RPG {
 				int horiz = 0;
 				var coord = InventoryCoord();
 				
-				for(int j = 0; j<=INVENTORY_HEIGHT-item.height; j++) {
-					for(int i = 0; i<=INVENTORY_WIDTH-item.width; i++) {
+				for(int j = 0; j<=this.height-item.height; j++) {
+					for(int i = 0; i<=this.width-item.width; i++) {
 						
 						
-						if(table[j,i].occupied==false) {
+						if(table[j,i].id!=-1) { //free slot
 							
 							horiz++;	
 							
@@ -61,7 +106,7 @@ namespace RPG {
 								for(int k = i-horiz; k<=item.width && ok; k++) {
 									
 									for(uint z = j; z-j<item.height && ok; z++) {
-											if(table[z,k].occupied) {
+											if(table[z,k].id!=-1) {
 												ok=false; 
 												horiz=0;
 											}
@@ -91,33 +136,41 @@ namespace RPG {
 				return coord;
 			}
 			
-			private void put_item_in_coords(Item item, InventoryCoord coord) {
+			private int lookup_new_item_id() {
+					for(int i=0; i<this.height*this.width; i++)
+						if(ilist[i].occupied==false) return i;
+					return -1;
+			}
+			
+			
+			private void add_item_at_coords(Item item, InventoryCoord coord) {
+				
+				int id = lookup_new_item_id();
 				
 				for(int j = coord.y; j <=coord.y+item.height; j++) {
 					
 						for(int i = coord.x; i<=coord.x+item.width; i++) {
 							
-								table[j,i].item = null;
-								table[j,i].occupied = true;  
-								
+								table[j,i].id = id;
 						}
 					
 				}
 				
-				table[coord.y,coord.x].item = item;
-				table[coord.y,coord.x].occupied = true;	
+				ilist[id].coord = coord;
+				ilist[id].item = item;	
+				ilist[id].occupied = true;
 				
 			}
 			
 			
 			
-			public bool put_item(Item item) {
+			public bool add_item(Item item) {
 					InventoryCoord coord = this.find_place_for_item(item);
 					if(coord.valid) {
-						this.put_item_in_coords(item, coord);
+						this.add_item_at_coords(item, coord);
 						return true;
 					}
-					else return false;
+					return false;
 			}
 		
 			
