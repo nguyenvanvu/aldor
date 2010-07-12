@@ -56,12 +56,12 @@ namespace RPG {
 			}
 			
 			
-			public string lookup_att_value(string name) {
+			public string? lookup_att_value(string name) {
 					foreach(var att in attlist) {
 							if(att.name==name)
 								return att.value;
 					}
-					return "not found";
+					return null;
 			}
 			
 			public bool has_att_name(string name) {

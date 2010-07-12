@@ -15,8 +15,8 @@ namespace RPG {
 				public string name { get; set; default = "unknown"; }
 				public string surname { get; set; default = "unknown"; }
 				public uint age { get; set; default = 0; }
-				public uint height { get; set; }
-				public uint weight { get; set; }
+				public double height { get; set; }
+				public double weight { get; set; }
 				public Race race { get; set; default = 0; }
 				public Gender gender { get; set; default = Gender.UNKNOWN; }
 				public Alignment alignment { get; set; }
@@ -79,14 +79,44 @@ namespace RPG {
 						
 						/* PARSING */
 						switch(elem.name) {
+							case "uid":
+								uid = elem.text.to_int();
+								break;
+							
 							case "name":
 								name = elem.text;
 								break;
+							
 							case "surname":
 								surname = elem.text;
 								break;
+							
 							case "age":
 								age = elem.text.to_int();
+								break;
+							
+							case "race":
+								race = (Race) elem.text.to_int();
+								break;
+							
+							case "height":
+								string measure = elem.lookup_att_value("measure");
+								if(measure!=null && measure=="feet")
+									height = feet_to_m(elem.text.to_double());
+								else //default=meters
+									height = elem.text.to_double();
+								break;
+							
+							case "weight":
+								weight = elem.text.to_int();
+								break;
+							
+							case "gender":
+								gender = (Gender) elem.text.to_int();
+								break;
+							
+							default:
+								stdout.printf("XmlParser: unknown option "+elem.name+", ommiting it\n");
 								break;
 						}
 					
