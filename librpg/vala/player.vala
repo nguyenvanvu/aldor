@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 	
 		
 		class Player: Object {
@@ -17,7 +16,6 @@ namespace RPG {
 		} 
 		
 		
-		
-	}	
+			
 }
 		

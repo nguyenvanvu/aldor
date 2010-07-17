@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
-	}	
+	
 }

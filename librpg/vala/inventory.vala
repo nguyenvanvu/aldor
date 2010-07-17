@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		
 		struct InventoryCoord {
@@ -176,7 +175,4 @@ namespace RPG {
 			
 		}
 		
-		
-		
-	}	
 }

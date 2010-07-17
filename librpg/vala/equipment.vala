@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		
 		public enum EquipmentPlace {
@@ -41,6 +40,5 @@ namespace RPG {
 		}
 		
 		
-		
-	}	
+			
 }

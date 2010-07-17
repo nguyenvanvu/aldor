@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		//[SimpleType] public struct Skill : uint { }
 		
@@ -51,6 +50,5 @@ namespace RPG {
 				
 			
 		}
-		
-	}	
+			
 }

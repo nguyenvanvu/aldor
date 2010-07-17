@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		
 		class PC : Creature {
@@ -8,5 +7,5 @@ namespace RPG {
 			
 			
 		}
-	}	
+	
 }

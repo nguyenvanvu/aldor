@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		//[SimpleType] public struct Gender : uint { }
 			
@@ -10,6 +9,5 @@ namespace RPG {
 			FEMALE
 		}
 		
-		
-	}	
+			
 }

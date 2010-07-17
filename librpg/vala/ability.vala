@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		public enum Ability {
 			STRENGTH=0,
@@ -53,5 +52,4 @@ namespace RPG {
 			
 		}
 
-	}	
 }

@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		
 		public enum Alignment {
@@ -43,8 +42,7 @@ namespace RPG {
 			return a==Alignment.LAWFUL_NEUTRAL || a==Alignment.NEUTRAL || a==Alignment.CHAOTIC_NEUTRAL;
 		}
 		
-		
-	}	
+			
 }
 
 

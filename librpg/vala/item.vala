@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		
 		public enum ItemType {
@@ -30,5 +29,4 @@ namespace RPG {
 				public ItemSize size { get; set; }
 		}
 		
-	}	
 }

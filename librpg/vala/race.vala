@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		//[SimpleType] public struct Race : uint { }
 		
@@ -14,6 +13,5 @@ namespace RPG {
 		}
 		
 		uint RACE_MAX_NUM = 6;
-
-	}	
+	
 }

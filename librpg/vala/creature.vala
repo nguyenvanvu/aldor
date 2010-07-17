@@ -1,5 +1,4 @@
 namespace RPG {
-    namespace DD {
 		
 		public class Creature : Object {
 		
@@ -133,6 +132,5 @@ namespace RPG {
 			}
 			
 								
-		} 
-	}	
+		} 	
 }
