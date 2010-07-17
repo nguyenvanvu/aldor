@@ -1,6 +1,7 @@
 namespace RPG {
 		
 		public enum Ability {
+			NONE=-1,
 			STRENGTH=0,
 			DEXTERITY,
 			CONSTITUTION,
@@ -8,34 +9,11 @@ namespace RPG {
 			WISDOM,
 			CHARISMA
 		}
-		
-		uint ABILITY_MAX_NUM = 6;
-		
-		string[] ABILITY_NAMES;
-		
-		
-		
-		
-		
-		public void ability_stuff_load() {
-			ABILITY_NAMES = new string[ABILITY_MAX_NUM];
-			/* ------------------- We may want to pass this to some kind of storage system later ------ */
-		
-			/* skill names: */
-			string[] ABILITY_NAMES = new string[SKILL_MAX_NUM];
-			ABILITY_NAMES[Ability.STRENGTH] = "fuerza";
-			ABILITY_NAMES[Ability.DEXTERITY] = "destreza";
-			//...
-			
-			/*-------------------------------------------*/
-		
-			
-		}
 
 		
 		public class AbilityList {
-				
-				private uint[] list = new uint[ABILITY_MAX_NUM];
+			
+				private uint[] list;
 				
 				
 				public uint get_base_by_id(Ability ability_id) {
@@ -49,7 +27,28 @@ namespace RPG {
 				public uint get_mod_by_id(Ability ability_id) {
 					return (list[ability_id] - 10) / 2 ;
 				}
+				
+				
+				public AbilityList () {
+					EnumClass cls = (EnumClass) typeof(Ability).class_ref();
+					list = new uint[cls.n_values]; //NONE doesn't need mem space
+					
+				}
 			
 		}
+		
+		public interface iAbilityList : Object {
+			
+				private abstract AbilityList al {get; set;}
+		
+				public uint ability_base_get(Ability id) {
+					return al.get_base_by_id(id);
+				}
+				
+				public uint ability_mod_get(Ability id) {
+					return al.get_mod_by_id(id);
+				}
+		}
+		
 
 }

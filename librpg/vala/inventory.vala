@@ -175,4 +175,27 @@ namespace RPG {
 			
 		}
 		
+		
+		
+		public interface iInventory : Object {
+			private abstract Inventory inventory {get; set;}
+			
+			public bool give_item(Item item) {
+				return inventory.add_item(item);
+			}
+			
+			
+			public bool has_item(Item item) {
+				return inventory.has_item(item);
+			}
+			
+			
+			public Item? get_item_by_name(string name) {
+				return inventory.get_item_by_name(name);
+			}
+			
+			public Item? get_item_by_tag(string tag) {
+				return inventory.get_item_by_tag(tag);
+			}
+		}
 }

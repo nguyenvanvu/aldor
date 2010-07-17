@@ -1,13 +1,14 @@
 namespace RPG {
 		
-		public class Creature : Object {
+		public class Creature : Object, iSkillList, iAbilityList, iInventory {
 		
 			/* Private elements */
 			
 				//private ClassInfo _classes;
-				private SkillList sl;
-				private AbilityList al;
+				private SkillList sl {get; set;}
+				private AbilityList al {get; set;}
 				private string sheet_path;
+				private Inventory inventory { get; set; }
 				
 			/* Standard getters/setters */
 				public uint uid { get; private set; default = 0; }
@@ -19,33 +20,11 @@ namespace RPG {
 				public Race race { get; set; default = 0; }
 				public Gender gender { get; set; default = Gender.UNKNOWN; }
 				public Alignment alignment { get; set; }
-				public Inventory inventory { get; set; }
 				public Equipment equipment { get; set; }
 				
 			/* Non-Standard getters/setters */
-				public uint skill_base_get(Skill id) {
-					return sl.get_base_by_id(id);
-				}
-				public void skill_base_set(Skill id, uint n) {
-					sl.set_base_by_id(id, n);
-				}
+			
 				
-				public uint skill_ab_mod_get(Skill id) {
-					Ability ab = SKILLS_ABILITY[id];
-					return al.get_mod_by_id(ab);
-				}
-				
-				public uint skill_total_get(Skill id) {
-					return this.skill_base_get(id) + this.skill_ab_mod_get(id);
-				}
-				
-				public uint ability_base_get(Ability id) {
-					return al.get_base_by_id(id);
-				}
-				
-				public uint ability_mod_get(Ability id) {
-					return al.get_mod_by_id(id);
-				}
 				
 				
 				/* Constructors */
