@@ -11,7 +11,5 @@ namespace RPG {
 			BADGER,
 			LION,
 		}
-		
-		uint RACE_MAX_NUM = 6;
 	
 }

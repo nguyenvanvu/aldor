@@ -3,11 +3,12 @@ namespace RPG {
 		public enum Ability {
 			NONE=-1,
 			STRENGTH=0,
-			DEXTERITY,
+			AGILITY,
 			CONSTITUTION,
 			INTELLIGENCE,
-			WISDOM,
-			CHARISMA
+			DEXTERITY,
+			CHARISMA,
+			APPEARENCE
 		}
 
 		
@@ -16,22 +17,22 @@ namespace RPG {
 				private uint[] list;
 				
 				
-				public uint get_base_by_id(Ability ability_id) {
-					return list[ability_id];
+				public uint get_base(Ability ab) {
+					return list[ab];
 				}
 				
-				public void set_base_by_id(Ability ability_id, uint n) {
-					list[ability_id] = n;
+				public void set_base(Ability ab, uint n) {
+					list[ab] = n;
 				}
 				
-				public uint get_mod_by_id(Ability ability_id) {
-					return (list[ability_id] - 10) / 2 ;
+				public int get_mod(Ability ab) {
+					return ((int) list[ab] - 50)*40 / 100 ;
 				}
 				
 				
 				public AbilityList () {
 					EnumClass cls = (EnumClass) typeof(Ability).class_ref();
-					list = new uint[cls.n_values]; //NONE doesn't need mem space
+					list = new uint[cls.n_values-1]; //NONE doesn't need mem space
 					
 				}
 			
@@ -42,11 +43,11 @@ namespace RPG {
 				private abstract AbilityList al {get; set;}
 		
 				public uint ability_base_get(Ability id) {
-					return al.get_base_by_id(id);
+					return al.get_base(id);
 				}
 				
-				public uint ability_mod_get(Ability id) {
-					return al.get_mod_by_id(id);
+				public int ability_mod_get(Ability id) {
+					return al.get_mod(id);
 				}
 		}
 		
