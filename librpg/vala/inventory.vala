@@ -178,7 +178,7 @@ namespace RPG {
 		
 		
 		public interface iInventory : Object {
-			private abstract Inventory inventory {get; set;}
+			protected abstract Inventory inventory {get; set;}
 			
 			public bool give_item(Item item) {
 				return inventory.add_item(item);

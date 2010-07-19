@@ -25,8 +25,12 @@ namespace RPG {
 					list[ab] = n;
 				}
 				
-				public int get_mod(Ability ab) {
+				public int get_mod40(Ability ab) {
 					return ((int) list[ab] - 50)*40 / 100 ;
+				}
+				
+				public int get_mod20(Ability ab) {
+					return ((int) list[ab] - 50)*20 / 100 ;
 				}
 				
 				
@@ -40,14 +44,22 @@ namespace RPG {
 		
 		public interface iAbilityList : Object {
 			
-				private abstract AbilityList al {get; set;}
+				protected abstract AbilityList al {get; set;}
 		
-				public uint ability_base_get(Ability id) {
-					return al.get_base(id);
+				public uint get_ability_base(Ability ab) {
+					return al.get_base(ab);
 				}
 				
-				public int ability_mod_get(Ability id) {
-					return al.get_mod(id);
+				public void set_ability_base(Ability ab, uint n) {
+					al.set_base(ab, n);
+				}
+				
+				public int get_ability_mod20(Ability ab) {
+					return al.get_mod20(ab);
+				}
+				
+				public int get_ability_mod40(Ability ab) {
+					return al.get_mod40(ab);
 				}
 		}
 		

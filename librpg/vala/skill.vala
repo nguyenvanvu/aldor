@@ -65,6 +65,8 @@ namespace RPG {
 			
 		}
 		
+		//static const uint N_SKILLS;
+		
 		public enum SkillCategory {
 			NONE=-1,
 			COMBAT_SWORD=0,
@@ -95,6 +97,8 @@ namespace RPG {
 			
 			/*This is necessary to get number of elements in e num till a patch gets in new vala */
 			EnumClass cls = (EnumClass) typeof(Skill).class_ref();
+			
+			//const uint N_SKILLS = cls.n_values;
 			
 			SKILLS_INFO = new SkillInfo[cls.n_values];
 			
@@ -172,7 +176,7 @@ namespace RPG {
 			return SKILLS_INFO[skill].first;
 		}
 		
-		public Ability skill_get_2st_ability_based_on(Skill skill) {
+		public Ability skill_get_2nd_ability_based_on(Skill skill) {
 			return SKILLS_INFO[skill].second;
 		}
 		
@@ -186,12 +190,15 @@ namespace RPG {
 				private uint[] list;
 				
 				
-				public uint get_base_by_id(Skill skill_id) {
-					return list[skill_id];
+				public uint get_base(Skill skill) {
+					return list[skill];
 				}
-				public void set_base_by_id(Skill skill_id, uint n) {
-					list[skill_id] = n;
+				public void set_base(Skill skill, uint n) {
+					stdout.printf("HELLOOOO2!\n");
+					list[skill] = n;
+					stdout.printf("HELLOOOO3!\n");
 				}
+				
 				
 				public SkillList () {
 					EnumClass cls = (EnumClass) typeof(Skill).class_ref();
@@ -203,28 +210,51 @@ namespace RPG {
 		
 		
 				/* methods available for classes with SkillList */
-		public interface iSkillList : Object {
+		public interface iSkillList : Object, iAbilityList {
 			
-				private abstract SkillList sl {get; set;}
-			
-				public uint skill_base_get(Skill id) {
-					return sl.get_base_by_id(id);
-				}
-				public void skill_base_set(Skill id, uint n) {
-					sl.set_base_by_id(id, n);
-				}
-				 //TODO: Pass this to skill.vala
-				/*public uint skill_ab_mod_get(Skill id) {
-					Ability ab = SKILL_ABILITY[id];
-					return al.get_mod_by_id(ab);
-				}*/
-				public uint skill_ab_mod_get(Skill id) {
-					return -1;
-				}
+				protected abstract SkillList sl {get; set;}
 
+				public uint get_skill_base(Skill skill) {
+					return sl.get_base(skill);
+				}
+				public void set_skill_base(Skill skill, uint n) {
+
+					sl.set_base(skill, n);
+				}
 				
-				public uint skill_total_get(Skill id) {
-					return this.skill_base_get(id) + this.skill_ab_mod_get(id);
+				
+				public uint get_skill_ab_mod(Skill skill) {
+					if(skill_get_2nd_ability_based_on(skill)==Ability.NONE) 
+						return this.get_ability_mod40(skill_get_1st_ability_based_on(skill));
+					 else 
+						return this.get_ability_mod20(skill_get_1st_ability_based_on(skill)) 
+							+  this.get_ability_mod20(skill_get_2nd_ability_based_on(skill));	
+					
+				}
+				
+				
+				public int get_skill_category_mod(Skill skill) {
+					SkillCategory cat = skill_get_category(skill);
+					
+					uint max=0;
+					/* foreach still not implemented in enums. I've opened a bug myself:
+					foreach (var skill in Skill.values) {
+							if(SKILLS_INFO[skill].category == cat && sl.get_base()>max)
+								max = sl.get_base();	
+					}*/
+					for(int i=0; i<SKILLS_INFO.length; i++) {
+							if(SKILLS_INFO[i].category == cat && sl.get_base((Skill) i)>max)
+								max = sl.get_base((Skill) i);
+					}
+					return ((int) max - 50)*20 / 100;
+				}
+				
+				public uint get_skill_total(Skill skill) {
+					int sbase = (int) this.get_skill_base(skill);
+					int scat = this.get_skill_category_mod(skill);
+					
+					return scat.max(scat, sbase) + this.get_skill_ab_mod(skill);
+
 				}
 				
 		

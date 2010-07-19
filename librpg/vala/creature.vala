@@ -5,10 +5,10 @@ namespace RPG {
 			/* Private elements */
 			
 				//private ClassInfo _classes;
-				private SkillList sl {get; set;}
-				private AbilityList al {get; set;}
+				protected SkillList sl {get; set;}
+				protected AbilityList al {get; set;}
 				private string sheet_path;
-				private Inventory inventory { get; set; }
+				protected Inventory inventory { get; set; }
 				
 			/* Standard getters/setters */
 				public uint uid { get; private set; default = 0; }
