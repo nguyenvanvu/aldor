@@ -1,6 +1,6 @@
 namespace RPG {
 		
-		public class Creature : Object, iSkillList, iAbilityList, iInventory {
+		public class Creature : Object, iAbilityList, iSkillList, iInventory {
 		
 			/* Private elements */
 			
@@ -29,8 +29,11 @@ namespace RPG {
 				
 				/* Constructors */
 			
-			
 			public Creature.from_file(string path) {
+				
+				sl = new SkillList();
+				al = new AbilityList();
+				inventory = new Inventory();
 				
 				sheet_path = path;
 				var reader = new Xml.TextReader.filename(path);

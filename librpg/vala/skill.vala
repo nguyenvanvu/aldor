@@ -194,9 +194,7 @@ namespace RPG {
 					return list[skill];
 				}
 				public void set_base(Skill skill, uint n) {
-					stdout.printf("HELLOOOO2!\n");
 					list[skill] = n;
-					stdout.printf("HELLOOOO3!\n");
 				}
 				
 				
@@ -218,7 +216,6 @@ namespace RPG {
 					return sl.get_base(skill);
 				}
 				public void set_skill_base(Skill skill, uint n) {
-
 					sl.set_base(skill, n);
 				}
 				

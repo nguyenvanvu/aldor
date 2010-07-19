@@ -35,11 +35,11 @@ int main(string[] args) {
 		stdout.printf("\n\n\n\n");
 		
 		pc.set_skill_base(Skill.PLAY_HORN, 30);
-		/*pc.set_ability_base(Ability.DEXTERITY, 50);
+		pc.set_ability_base(Ability.DEXTERITY, 50);
 		pc.set_ability_base(Ability.CHARISMA, 70);
 		pc.set_ability_base(Ability.STRENGTH, 20);
-		stdout.printf("Modificador 20% de destreza: "+pc.get_ability_mod20(Ability.DEXTERITY).to_string()+"\n");
-		*/
+		stdout.printf("Modificador 20% de carisma: "+pc.get_ability_mod20(Ability.CHARISMA).to_string()+"\n");
+		
         return 0;
     }
 
