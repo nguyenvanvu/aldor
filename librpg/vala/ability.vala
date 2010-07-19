@@ -1,14 +1,13 @@
 namespace RPG {
 		
 		public enum Ability {
-			NONE=-1,
 			STRENGTH=0,
 			AGILITY,
 			CONSTITUTION,
 			INTELLIGENCE,
 			DEXTERITY,
 			CHARISMA,
-			APPEARENCE
+			APPEARANCE
 		}
 
 		
@@ -24,11 +23,7 @@ namespace RPG {
 				public void set_base(Ability ab, uint n) {
 					list[ab] = n;
 				}
-				
-				public int get_mod40(Ability ab) {
-					return ((int) list[ab] - 50)*40 / 100 ;
-				}
-				
+			
 				public int get_mod20(Ability ab) {
 					return ((int) list[ab] - 50)*20 / 100 ;
 				}
@@ -57,10 +52,7 @@ namespace RPG {
 				public int get_ability_mod20(Ability ab) {
 					return al.get_mod20(ab);
 				}
-				
-				public int get_ability_mod40(Ability ab) {
-					return al.get_mod40(ab);
-				}
+
 		}
 		
 
