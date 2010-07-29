@@ -1,7 +1,15 @@
  #!/bin/bash
 
 set -e
-echo "COMPILING VALA TO C CODE..."
+
+
+echo "GENERATING SKILL ENUMs FROM SQLITE DB..."
+./gen_enum.sh
+
+
+echo "
+
+COMPILING VALA TO C CODE..."
 valac -C -H rpg.h --library=rpg --pkg libxml-2.0 --basedir=./ `ls *.vala`
 
 echo "

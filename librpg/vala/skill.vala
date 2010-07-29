@@ -39,68 +39,6 @@ namespace RPG {
 			SKILLS_INFO = new SkillInfo[cls.n_values];
 			
 			
-			/*TODO: PUT CORRECT ABILITIES IN EACH SKILL */
-			//SWORD COMBAT CATEGORY:
-			SKILLS_INFO[Skill.COMBAT_SHORT_SWORD] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.COMBAT_LONG_SWORD] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.COMBAT_GREAT_SWORD] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			//AXE COMBAT CATEGORY:
-			SKILLS_INFO[Skill.COMBAT_HAND_AXE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.COMBAT_WAR_AXE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.COMBAT_BIG_AXE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			//BOW COMBAT CATEGORY:
-			SKILLS_INFO[Skill.COMBAT_SHORT_BOW] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.COMBAT_LONG_BOW] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			//SHIELD COMBAT CATEGORY:
-			SKILLS_INFO[Skill.COMBAT_SHIELD] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			SKILLS_INFO[Skill.OPEN_LOCKS] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.SET_REMOVE_TRAPS] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.TIE_KNOT] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			SKILLS_INFO[Skill.POTTERY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.FORGE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.JEWERLLY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.QUARRY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.CARPENTRY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.FUR] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.TAILORING] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			//PLAY WIND INSTRUMENTS CATEGORY:
-			SKILLS_INFO[Skill.PLAY_FLUTE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.PLAY_OCARINA] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.PLAY_HORN] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			//PLAY STRING INSTRUMENTS CATEGORY:
-			SKILLS_INFO[Skill.PLAY_HARP] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.PLAY_GUITAR] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.PLAY_LUTE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-		
-			//PHYSICS KNOWLEDGE CATEGORY:
-			SKILLS_INFO[Skill.KNOWLEDGE_SKY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.KNOWLDGE_GEOGRAPHY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-		
-			//BIOLOGICAL KNOWLEDGE CATEGORY:
-			SKILLS_INFO[Skill.KNOWLEDGE_BOTANY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.KNOWLEDGE_ZOOLOGY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.KNOWLEDGE_VENOMS] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			//HUMAN KNOWLEDGE CATEGORY:
-			SKILLS_INFO[Skill.KNOWLEDGE_HISTORY] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.KNOWLEDGE_POLITICS]= {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.KNOWLEDGE_TRADE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.KNOWLEDGE_NAVIGATION] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			
-			//RESISTANCE:
-			SKILLS_INFO[Skill.RESISTANCE_COLD] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.RESISTANCE_HOT] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.RESISTANCE_TORTURE] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			SKILLS_INFO[Skill.RESISTANCE_VENOMS] = {Ability.STRENGTH, Ability.CHARISMA, SkillGroup.NONE};
-			//...
-			
 			
 			/*-------------------------------------------*/
 		

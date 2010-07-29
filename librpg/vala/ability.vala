@@ -31,7 +31,7 @@ namespace RPG {
 				
 				public AbilityList () {
 					EnumClass cls = (EnumClass) typeof(Ability).class_ref();
-					list = new uint[cls.n_values-1]; //NONE doesn't need mem space
+					list = new uint[cls.n_values];
 					
 				}
 			
