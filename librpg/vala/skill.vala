@@ -3,20 +3,6 @@ namespace RPG {
 		//[SimpleType] public struct Skill : uint { }
 		
 		
-		public enum SkillGroup {
-			NONE=-1,
-			COMBAT_SWORD=0,
-			COMBAT_AXE,
-			COMBAT_BOW,
-			COMBAT_SHIELD,
-			PLAY_INSTRUMENT_WIND,
-			PLAY_INSTRUMENT_STRING,
-			KNOWLEDGE_PHYSICS,
-			KNOWLEDGE_BIOLOGICAL,
-			KNOWLEDGE_HUMAN,
-			RESISTANCE
-		}
-		
 		private struct SkillInfo {
 			Ability first;
 			Ability second;
