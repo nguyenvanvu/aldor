@@ -10,11 +10,11 @@ echo "GENERATING SKILL ENUMs FROM SQLITE DB..."
 echo "
 
 COMPILING VALA TO C CODE..."
-valac -C -H rpg.h --library=rpg --pkg libxml-2.0 --basedir=./ `ls *.vala`
+valac -C -g -H rpg.h --library=rpg --pkg libxml-2.0 --pkg sqlite3 --basedir=./ `ls *.vala`
 
 echo "
 
 COMPILING C CODE, CREATING C LIB..."
-gcc --shared -fPIC -o librpg.so $(pkg-config --cflags --libs libxml-2.0 gobject-2.0)  *.c
+gcc -g --shared -fPIC -o librpg.so $(pkg-config --cflags --libs libxml-2.0 sqlite3 gobject-2.0)  *.c
 
 echo "DONE!"

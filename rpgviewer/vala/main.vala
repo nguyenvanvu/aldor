@@ -34,11 +34,15 @@ int main(string[] args) {
 		/*SKILLS & ABILITIES*/
 		stdout.printf("\n\n\n\n");
 		
-		pc.set_skill_base(Skill.PLAY_HORN, 30);
+		pc.set_skill_base(Skill.COMBAT_SHORT_SWORD, 30);
 		pc.set_ability_base(Ability.DEXTERITY, 50);
 		pc.set_ability_base(Ability.CHARISMA, 70);
 		pc.set_ability_base(Ability.STRENGTH, 20);
 		stdout.printf("Modificador 20% de carisma: "+pc.get_ability_mod20(Ability.CHARISMA).to_string()+"\n");
+		
+		stdout.printf(Skill.COMBAT_SHORT_SWORD.to_string()+" name="+
+						skill_get_name(Skill.COMBAT_SHORT_SWORD)+" group="+
+						skill_get_group(Skill.COMBAT_SHORT_SWORD).to_string()+"\n");
 		
         return 0;
     }

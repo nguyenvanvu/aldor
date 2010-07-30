@@ -1,9 +1,11 @@
+
 namespace RPG {
 		
 		//[SimpleType] public struct Skill : uint { }
 		
 		
 		private struct SkillInfo {
+			string name;
 			Ability first;
 			Ability second;
 			SkillGroup group;
@@ -12,21 +14,41 @@ namespace RPG {
 		private SkillInfo[] SKILLS_INFO;
 		
 		void skill_stuff_load() {
-		
-			/* ------------------- We may want to pass this to some kind of storage system later ------ */
-			/* abilities - skills matching: */
 			
 			
 			/*This is necessary to get number of elements in e num till a patch gets in new vala */
 			EnumClass cls = (EnumClass) typeof(Skill).class_ref();
 			
-			//const uint N_SKILLS = cls.n_values;
-			
 			SKILLS_INFO = new SkillInfo[cls.n_values];
 			
+			Sqlite.Database db;
+			string[] res;
+			int rc, nrow, ncol;
+			string err, sql;
 			
+			rc = Sqlite.Database.open(DB_SKILLS_PATH, out db); 
+			if (rc != Sqlite.OK) {
+				stderr.printf ("ERR: Can't open database: %d, %s\n", rc, db.errmsg ());
+				return;
+			}
 			
-			/*-------------------------------------------*/
+			sql = "SELECT id,name,ability_first,ability_second,[group] FROM skills;";
+			rc = db.get_table (sql, out res, out nrow, out ncol, out err); 
+			if( rc != Sqlite.OK) {
+				stderr.printf ("ERR: Can't retrieve skills from database: %d, %s\n", rc, err);
+				return;
+			}
+			
+			for(int i = ncol; i<nrow*ncol; i+=ncol) {
+				int index = res[i].to_int();
+				SKILLS_INFO[index].name = 	res[i+1];
+				SKILLS_INFO[index].first = 	(Ability) res[i+2].to_int();
+				SKILLS_INFO[index].second =	(Ability) res[i+3].to_int();
+				SKILLS_INFO[index].group =	(SkillGroup) res[i+4].to_int();
+			}
+			
+			stdout.printf("INFO: Skills loaded successfully\n");
+			
 		
 	}
 
@@ -42,6 +64,9 @@ namespace RPG {
 		
 		public SkillGroup skill_get_group(Skill skill) {
 			return SKILLS_INFO[skill].group;
+		}
+		public string skill_get_name(Skill skill) {
+			return SKILLS_INFO[skill].name;
 		}
 		
 
