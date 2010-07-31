@@ -11,7 +11,7 @@ int main(string[] args) {
 		
 		rpg_init();
 		
-		var pc = new Creature.from_file(args[1]);
+		var pc = new PC.from_file(args[1]);
 		/*GENERAL INFO*/
 		stdout.printf("\n\n\n\nCharacter "+pc.name+" "+pc.surname+" has "+pc.age.to_string()+" years\n");
 		if(pc.gender!=Gender.FEMALE)
@@ -43,6 +43,10 @@ int main(string[] args) {
 		stdout.printf(Skill.COMBAT_SHORT_SWORD.to_string()+" name="+
 						skill_get_name(Skill.COMBAT_SHORT_SWORD)+" group="+
 						skill_get_group(Skill.COMBAT_SHORT_SWORD).to_string()+"\n");
+						
+						
+		//pc.player.username = "usuario cualquiera";				
+		pc.save_to_file("example_generated.xml");
 		
         return 0;
     }

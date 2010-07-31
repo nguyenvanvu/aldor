@@ -59,59 +59,68 @@ namespace RPG {
 						}
 						
 						/* PARSING */
-						switch(elem.name) {
-							case "uid":
-								uid = elem.text.to_int();
-								break;
-							
-							case "name":
-								name = elem.text;
-								break;
-							
-							case "surname":
-								surname = elem.text;
-								break;
-							
-							case "age":
-								age = elem.text.to_int();
-								break;
-							
-							case "race":
-								race = (Race) elem.text.to_int();
-								break;
-							
-							case "height":
-								string measure = elem.lookup_att_value("measure");
-								if(measure!=null && measure=="feet")
-									height = feet_to_m(elem.text.to_double());
-								else //default=meters
-									height = elem.text.to_double();
-								break;
-							
-							case "weight":
-								weight = elem.text.to_int();
-								break;
-							
-							case "gender":
-								gender = (Gender) elem.text.to_int();
-								break;
-							
-							default:
-								stdout.printf("XmlParser: unknown option "+elem.name+", ommiting it\n");
-								break;
-						}
+						this.parse_XmlElement(elem);
 					
 					}
 					
 					
 					
 				}
-
-				
 				
 				reader.close();
 				
 			}
+			
+			
+			protected virtual bool parse_XmlElement(XmlElement elem) {
+				bool found = true;
+				
+				switch(elem.name) {
+						case "uid":
+							uid = elem.text.to_int();
+							break;
+						
+						case "name":
+							name = elem.text;
+							break;
+						
+						case "surname":
+							surname = elem.text;
+							break;
+						
+						case "age":
+							age = elem.text.to_int();
+							break;
+						
+						case "race":
+							race = (Race) elem.text.to_int();
+							break;
+						
+						case "height":
+							string measure = elem.lookup_att_value("measure");
+							if(measure!=null && measure=="feet")
+								height = feet_to_m(elem.text.to_double());
+							else //default=meters
+								height = elem.text.to_double();
+							break;
+						
+						case "weight":
+							weight = elem.text.to_int();
+							break;
+						
+						case "gender":
+							gender = (Gender) elem.text.to_int();
+							break;
+						
+						default:
+							stdout.printf("XmlParser: unknown option "+elem.name+", ommiting it\n");
+							found=false;
+							break;
+					}
+				return found;
+				
+			}
+
 			
 								
 		} 	
