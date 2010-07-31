@@ -7,11 +7,11 @@ namespace RPG {
 				//private ClassInfo _classes;
 				protected SkillList sl {get; set;}
 				protected AbilityList al {get; set;}
-				private string sheet_path;
 				protected Inventory inventory { get; set; }
 				
 			/* Standard getters/setters */
 				public uint uid { get; private set; default = 0; }
+				public string sheet_path{get; private set; default = "unknown"; }
 				public string name { get; set; default = "unknown"; }
 				public string surname { get; set; default = "unknown"; }
 				public uint age { get; set; default = 0; }
@@ -29,14 +29,17 @@ namespace RPG {
 				
 				/* Constructors */
 			
-			public Creature.from_file(string path) {
+			public Creature() {
 				
 				sl = new SkillList();
 				al = new AbilityList();
 				inventory = new Inventory();
 				
-				sheet_path = path;
-				var reader = new Xml.TextReader.filename(path);
+			}
+			
+			public void load_from_file(string path) {
+				this.sheet_path = path;
+				var reader = new Xml.TextReader.filename(this.sheet_path);
 				
 				while (reader.read()==1) {
 					// parse based on NodeType
@@ -70,6 +73,42 @@ namespace RPG {
 				reader.close();
 				
 			}
+			
+			public void load() {
+					this.load_from_file(this.sheet_path);
+			}
+			
+			
+			public void save_to_file(string file_path) {
+				
+				var writer = new Xml.TextWriter.filename (file_path);
+				writer.set_indent (true);
+				writer.set_indent_string ("\t");
+	
+				writer.start_document();
+				writer.start_element("sheet");
+				
+				this.save_xml_info(writer);
+
+				writer.end_element();
+				
+				sheet_path = file_path;
+				
+			}
+			
+			public void save() {
+					this.save_to_file(this.sheet_path);
+			}
+			
+			
+			
+			
+			protected virtual void save_xml_info(Xml.TextWriter writer) {
+				writer.write_element ("name", this.name);
+				writer.write_element ("surname", this.surname);
+				
+			}
+			
 			
 			
 			protected virtual bool parse_XmlElement(XmlElement elem) {

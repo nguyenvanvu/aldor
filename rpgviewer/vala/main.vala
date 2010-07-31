@@ -11,7 +11,8 @@ int main(string[] args) {
 		
 		rpg_init();
 		
-		var pc = new PC.from_file(args[1]);
+		var pc = new PC();
+		pc.load_from_file(args[1]);
 		/*GENERAL INFO*/
 		stdout.printf("\n\n\n\nCharacter "+pc.name+" "+pc.surname+" has "+pc.age.to_string()+" years\n");
 		if(pc.gender!=Gender.FEMALE)
@@ -44,9 +45,19 @@ int main(string[] args) {
 						skill_get_name(Skill.COMBAT_SHORT_SWORD)+" group="+
 						skill_get_group(Skill.COMBAT_SHORT_SWORD).to_string()+"\n");
 						
-						
-		//pc.player.username = "usuario cualquiera";				
+		stdout.printf("\nSAVING PC TO example_generated.xml ...\n");								
 		pc.save_to_file("example_generated.xml");
+		stdout.printf("SAVING PC TO example_generated2.xml ...\n");
+		pc.save_to_file("example_generated2.xml");
+		stdout.printf("CHANGING PCs PLAYER USERNAME ...\n");
+		pc.player.username = "usuario cualquiera";
+		stdout.printf("SAVING TO DEFAULT LOCATION ("+pc.sheet_path+") ...\n");
+		pc.save();
+		
+		stdout.printf("LOADING FROM DEFAULT LOCATION ("+pc.sheet_path+") ...\n");
+		pc.load();
+		stdout.printf("SAVING TO example_generated3.xml ...\n");
+		pc.save_to_file("example_generated3.xml");
 		
         return 0;
     }
