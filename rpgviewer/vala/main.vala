@@ -13,6 +13,7 @@ int main(string[] args) {
 		
 		var pc = new PC();
 		pc.load_from_file(args[1]);
+		
 		/*GENERAL INFO*/
 		stdout.printf("\n\n\n\nCharacter "+pc.name+" "+pc.surname+" has "+pc.age.to_string()+" years\n");
 		if(pc.gender!=Gender.FEMALE)
@@ -23,19 +24,11 @@ int main(string[] args) {
 		
 		
 		
-		/*DICE*/
-		stdout.printf("\n\n\n\n");
-		
-		var d100 = new Dice();
-		
-		stdout.printf("Tiro un dado de "+d100.faces.to_string()+" y saco un "+d100.throw().to_string()+"\n");
-		
-		
 		
 		/*SKILLS & ABILITIES*/
 		stdout.printf("\n\n\n\n");
 		
-		pc.set_skill_base(Skill.COMBAT_SHORT_SWORD, 30);
+		pc.set_skill_base(Skill.COMBAT_SHORT_SWORD, 60);
 		pc.set_ability_base(Ability.DEXTERITY, 50);
 		pc.set_ability_base(Ability.CHARISMA, 70);
 		pc.set_ability_base(Ability.STRENGTH, 20);
@@ -45,6 +38,25 @@ int main(string[] args) {
 						skill_get_name(Skill.COMBAT_SHORT_SWORD)+" group="+
 						skill_get_group(Skill.COMBAT_SHORT_SWORD).to_string()+"\n");
 						
+						
+						
+				
+		/*DICE*/
+		stdout.printf("\n\n\n\n");
+		
+		var d100 = new Dice();
+		
+		stdout.printf("Tiro un dado de "+d100.faces.to_string()+" y saco un "+d100.throw().to_string()+"\n");
+		
+		
+		for(int i=0; i<20; i++) {
+				ThrowInfo info = pc.throw_skill_dice(Skill.COMBAT_SHORT_SWORD, i);
+				stdout.printf(pc.full_name+" intenta una tirada de "+skill_get_name(Skill.COMBAT_SHORT_SWORD)+
+								" con dificultad "+i.to_string()+" y saca un "+info.value.to_string()+" ("+info.result.to_string()+")\n");	
+		}
+			
+			
+		/*LOADING-SAVING XML*/				
 		stdout.printf("\nSAVING PC TO example_generated.xml ...\n");								
 		pc.save_to_file("example_generated.xml");
 		stdout.printf("SAVING PC TO example_generated2.xml ...\n");

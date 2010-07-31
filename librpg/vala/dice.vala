@@ -1,4 +1,18 @@
 namespace RPG {
+	
+	
+	public enum ThrowResult {
+		EPIC_FAIL=0, //pifia xD
+		FAIL,
+		SUCCESS,
+		CRITIC
+	}
+	
+	public struct ThrowInfo {
+		ThrowResult result;
+		uint value;	//dice value
+	}
+	
 		
 		public class Dice : Object {
 				

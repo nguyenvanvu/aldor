@@ -4,6 +4,7 @@ namespace RPG {
 		
 			/* Private elements */
 			
+				private Dice dice;
 				//private ClassInfo _classes;
 				protected SkillList sl {get; set;}
 				protected AbilityList al {get; set;}
@@ -22,6 +23,12 @@ namespace RPG {
 				public Alignment alignment { get; set; }
 				public Equipment equipment { get; set; }
 				
+				
+				 public string full_name {
+					owned get { return this.name + " " + this.surname; }
+				}
+
+				
 			/* Non-Standard getters/setters */
 			
 				
@@ -30,7 +37,7 @@ namespace RPG {
 				/* Constructors */
 			
 			public Creature() {
-				
+				dice = new Dice();
 				sl = new SkillList();
 				al = new AbilityList();
 				inventory = new Inventory();
@@ -157,6 +164,33 @@ namespace RPG {
 							break;
 					}
 				return found;
+				
+			}
+			
+			
+			
+			public ThrowInfo throw_skill_dice(Skill skill, int difficulty) {
+					var res = ThrowInfo();
+					uint skill_total;
+					
+					skill_total = this.get_skill_total(skill);
+					 res.value = this.dice.throw();
+					
+					
+					if(res.value + difficulty < skill_total) {
+					
+							if(res.value <= skill_total/10)
+								res.result = ThrowResult.CRITIC;
+							else 
+								res.result = ThrowResult.SUCCESS;
+					} else {
+					
+						if( 90 + skill_total/10 < res.value)
+							res.result = ThrowResult.EPIC_FAIL;
+						else res.result = ThrowResult.FAIL;
+				}
+				
+				return res;
 				
 			}
 
