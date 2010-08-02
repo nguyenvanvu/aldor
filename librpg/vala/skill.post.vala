@@ -3,6 +3,76 @@ namespace RPG {
 		
 		//[SimpleType] public struct Skill : uint { }
 		
+		public enum Skill {
+			/*DON'T TOUCH THE LINE BELOW, IT'S PARSED AT PRECOMPILE TIME!*/
+			
+			COMBAT_SHORT_SWORD=0,
+			COMBAT_LONG_SWORD=1,
+			COMBAT_GREAT_SWORD=2,
+			COMBAT_HAND_AXE=3,
+			COMBAT_WAR_AXE=4,
+			COMBAT_BIG_AXE=5,
+			COMBAT_SHORT_BOW=6,
+			COMBAT_LONG_BOW=7,
+			COMBAT_SHIELD=8;
+			
+		
+				public Ability get_1st_ability_based_on() {
+					return SKILLS_INFO[this].first;
+				}
+				
+				public Ability get_2nd_ability_based_on() {
+					return SKILLS_INFO[this].second;
+				}
+				
+				public SkillGroup get_group() {
+					return SKILLS_INFO[this].group;
+				}
+				public string get_name() {
+					return SKILLS_INFO[this].name;
+				}
+		}
+		
+
+		public enum SkillGroup {
+			/*DON'T TOUCH THE LINE BELOW, IT'S PARSED AT PRECOMPILE TIME!*/
+			
+			NONE=0,
+			BATTLE_WITH_SWORD=1,
+			BATTLE_WITH_AXE=2,
+			BATTLE_WITH_BOW=3,
+			BATTLE_WITH_SHIELD=4,
+			MANUAL_DEXTERITY=5,
+			HANDCRAFTS=6,
+			PLAY_INSTRUMENT_WIND=7,
+			PLAY_INSTRUMENT_STRING=8,
+			KNOWLEDGE_PHYSICS=9,
+			KNOWLEDGE_BIOLOGICAL=10,
+			KNOWLEDGE_HUMAN=11;
+
+
+		} 
+		
+
+
+		public enum SkillCategory {
+			/*DON'T TOUCH THE LINE BELOW, IT'S PARSED AT PRECOMPILE TIME!*/
+			
+			NONE=0,
+			COMBAT=1,
+			MUSIC=2,
+			KNOWLEDGE=3;
+
+
+		} 
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		private struct SkillInfo {
 			string name;
@@ -52,22 +122,7 @@ namespace RPG {
 		
 	}
 
-		
-		
-		public Ability skill_get_1st_ability_based_on(Skill skill) {
-			return SKILLS_INFO[skill].first;
-		}
-		
-		public Ability skill_get_2nd_ability_based_on(Skill skill) {
-			return SKILLS_INFO[skill].second;
-		}
-		
-		public SkillGroup skill_get_group(Skill skill) {
-			return SKILLS_INFO[skill].group;
-		}
-		public string skill_get_name(Skill skill) {
-			return SKILLS_INFO[skill].name;
-		}
+	
 		
 
 		public class SkillList : Object {
@@ -106,13 +161,13 @@ namespace RPG {
 				
 				
 				public uint get_skill_ab_mod(Skill skill) {
-						return this.get_ability_mod20(skill_get_1st_ability_based_on(skill)) 
-							+  this.get_ability_mod20(skill_get_2nd_ability_based_on(skill));		
+						return this.get_ability_mod20(skill.get_1st_ability_based_on()) 
+							+  this.get_ability_mod20(skill.get_2nd_ability_based_on());		
 				}
 				
 				
 				public int get_skill_group_mod(Skill skill) {
-					SkillGroup cat = skill_get_group(skill);
+					SkillGroup cat = skill.get_group();
 					
 					uint max=0;
 					/* foreach still not implemented in enums. I've opened a bug myself:

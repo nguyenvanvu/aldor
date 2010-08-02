@@ -35,8 +35,8 @@ int main(string[] args) {
 		stdout.printf("Modificador 20% de carisma: "+pc.get_ability_mod20(Ability.CHARISMA).to_string()+"\n");
 		
 		stdout.printf(Skill.COMBAT_SHORT_SWORD.to_string()+" name="+
-						skill_get_name(Skill.COMBAT_SHORT_SWORD)+" group="+
-						skill_get_group(Skill.COMBAT_SHORT_SWORD).to_string()+"\n");
+						Skill.COMBAT_SHORT_SWORD.get_name()+" group="+
+						Skill.COMBAT_SHORT_SWORD.get_group().to_string()+"\n");
 						
 						
 						
@@ -51,7 +51,7 @@ int main(string[] args) {
 		
 		for(int i=0; i<20; i++) {
 				ThrowInfo info = pc.throw_skill_dice(Skill.COMBAT_SHORT_SWORD, i);
-				stdout.printf(pc.full_name+" intenta una tirada de "+skill_get_name(Skill.COMBAT_SHORT_SWORD)+
+				stdout.printf(pc.full_name+" intenta una tirada de "+Skill.COMBAT_SHORT_SWORD.get_name()+
 								" con dificultad "+i.to_string()+" y saca un "+info.value.to_string()+" ("+info.result.to_string()+")\n");	
 		}
 			

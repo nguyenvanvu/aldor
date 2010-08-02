@@ -6,8 +6,8 @@ SKILLS_DB_FILE_NAME="skills.sqlite"
 SKILLS_DB="$SKILLS_DB_PATH/$SKILLS_DB_FILE_NAME"
 
 SRC_PATH="."
-PRE_FILE_NAME="skill_list.pre.vala"
-POST_FILE_NAME="skill_list.post.vala"
+PRE_FILE_NAME="skill.pre.vala"
+POST_FILE_NAME="skill.post.vala"
 TMP_FILE="/tmp/gen_enum_tmp.txt";
 
 
