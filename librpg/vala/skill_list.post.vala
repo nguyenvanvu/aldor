@@ -4,7 +4,8 @@
 namespace RPG { 
 
 		public enum Skill {
-
+		
+			
 			COMBAT_SHORT_SWORD=0,
 			COMBAT_LONG_SWORD=1,
 			COMBAT_GREAT_SWORD=2,
@@ -13,13 +14,16 @@ namespace RPG {
 			COMBAT_BIG_AXE=5,
 			COMBAT_SHORT_BOW=6,
 			COMBAT_LONG_BOW=7,
-			COMBAT_SHIELD=8
-
-		} 
-
+			COMBAT_SHIELD=8;
+			
+	
+	
+		}
+		
 
 		public enum SkillGroup {
 
+			
 			NONE=0,
 			BATTLE_WITH_SWORD=1,
 			BATTLE_WITH_AXE=2,
@@ -31,17 +35,21 @@ namespace RPG {
 			PLAY_INSTRUMENT_STRING=8,
 			KNOWLEDGE_PHYSICS=9,
 			KNOWLEDGE_BIOLOGICAL=10,
-			KNOWLEDGE_HUMAN=11
+			KNOWLEDGE_HUMAN=11;
+
 
 		} 
+		
 
 
 		public enum SkillCategory {
 
+			
 			NONE=0,
 			COMBAT=1,
 			MUSIC=2,
-			KNOWLEDGE=3
+			KNOWLEDGE=3;
+
 
 		} 
 

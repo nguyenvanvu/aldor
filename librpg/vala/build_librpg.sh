@@ -10,7 +10,7 @@ echo "GENERATING SKILL ENUMs FROM SQLITE DB..."
 echo "
 
 COMPILING VALA TO C CODE..."
-valac -C -g -H rpg.h --library=rpg --pkg libxml-2.0 --pkg sqlite3 --basedir=./ `ls *.vala`
+valac -C -g -H rpg.h --library=rpg --pkg libxml-2.0 --pkg sqlite3 --basedir=./ `ls *.vala | grep -v *.pre.vala`
 
 echo "
 
