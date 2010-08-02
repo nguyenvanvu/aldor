@@ -10,36 +10,37 @@ namespace RPG {
 			CHAOTIC_NEUTRAL,		
 			LAWFUL_EVIL,
 			NEUTRAL_EVIL,
-			CHAOTIC_EVIL
-		}
+			CHAOTIC_EVIL;
 		
 		
 		/* law - chaos */
 		
-		public bool is_lawful(Alignment a) {
-			return a==Alignment.LAWFUL_GOOD || a==Alignment.LAWFUL_NEUTRAL || a==Alignment.LAWFUL_EVIL;
+		public bool is_lawful() {
+			return this==LAWFUL_GOOD || this==LAWFUL_NEUTRAL || this==LAWFUL_EVIL;
 		}
 		
-		public bool is_chaotic(Alignment a) {
-			return a==Alignment.CHAOTIC_GOOD || a==Alignment.CHAOTIC_NEUTRAL || a==Alignment.CHAOTIC_EVIL;
+		public bool is_chaotic() {
+			return this==CHAOTIC_GOOD || this==CHAOTIC_NEUTRAL || this==CHAOTIC_EVIL;
 		}
 		
-		public bool is_neutral_lawchaos(Alignment a) {
-			return a==Alignment.NEUTRAL_GOOD || a==Alignment.NEUTRAL || a==Alignment.NEUTRAL_EVIL;
+		public bool is_neutral_lawchaos() {
+			return this==NEUTRAL_GOOD || this==NEUTRAL || this==NEUTRAL_EVIL;
 		}
 		
 		/* good -evil */
 		
-		public bool is_good(Alignment a) {
-			return a==Alignment.LAWFUL_GOOD || a==Alignment.NEUTRAL_GOOD || a==Alignment.CHAOTIC_GOOD;
+		public bool is_good() {
+			return this==LAWFUL_GOOD || this==NEUTRAL_GOOD || this==CHAOTIC_GOOD;
 		}
 		
-		public bool is_evil(Alignment a) {
-			return a==Alignment.LAWFUL_EVIL || a==Alignment.NEUTRAL_EVIL || a==Alignment.CHAOTIC_EVIL;
+		public bool is_evil() {
+			return this==LAWFUL_EVIL || this==NEUTRAL_EVIL || this==CHAOTIC_EVIL;
 		}
 		
-		public bool is_neutral_goodevil(Alignment a) {
-			return a==Alignment.LAWFUL_NEUTRAL || a==Alignment.NEUTRAL || a==Alignment.CHAOTIC_NEUTRAL;
+		public bool is_neutral_goodevil() {
+			return this==LAWFUL_NEUTRAL || this==NEUTRAL || this==CHAOTIC_NEUTRAL;
+		}
+			
 		}
 		
 			
