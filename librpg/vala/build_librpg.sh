@@ -34,19 +34,16 @@ function do_compile {
 function do_compile_windows {
 	set -e
 	
-	WIN_PREFIX="/usr/i486-mingw32"
+	export WIN_PREFIX="/usr/i486-mingw32"
 	export PKG_CONFIG_PATH="$WIN_PREFIX/lib/pkgconfig"
 	
 	echo ""
 	echo ""	
-	echo "CROSSCOMPILING C CODE TO $1, CREATING C LIB..."
+	echo "CROSSCOMPILING C CODE TO windows, CREATING C LIB..."
 	
-	i486-mingw32-gcc -c *.c -mms-bitfields -I$WIN_PREFIX/include/libxml2 -I$WIN_PREFIX/include/libxml2/libxml  -I$WIN_PREFIX/include/glib-2.0 -I$WIN_PREFIX/lib/glib-2.0/include -L$WIN_PREFIX/lib -L$WIN_PREFIX/bin -lsqlite3 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lxml2 -lz -lm
+	i486-mingw32-gcc -c *.c -L$WIN_PREFIX/bin `pkg-config --define-variable=prefix=$WIN_PREFIX --cflags --libs sqlite3 gobject-2.0 libxml-2.0`
 
-	i486-mingw32-gcc --shared *.o -o librpg.dll -mms-bitfields -I$WIN_PREFIX/include/libxml2 -I$WIN_PREFIX/include/libxml2/libxml  -I$WIN_PREFIX/include/glib-2.0 -I$WIN_PREFIX/lib/glib-2.0/include -L$WIN_PREFIX/lib -L$WIN_PREFIX/bin -lsqlite3 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lxml2 -lm
-
-	
-	
+	i486-mingw32-gcc --shared *.o -o librpg.dll -L$WIN_PREFIX/bin `pkg-config --define-variable=prefix=$WIN_PREFIX --cflags --libs sqlite3 gobject-2.0 libxml-2.0`
 }
 
 function do_clean  {

@@ -7,7 +7,7 @@
 function do_generate_c_code {
 	echo ""
 	echo ""	
-	echo "COMPILING VALA TO C CODE..."
+	echo "COMPILING VALA TO C CODE AND CREATING LINUX BINARY..."
 	valac -C -X -I../../librpg/vala -X -L../../librpg/vala -X -lrpg --pkg libxml-2.0 -o rpgviewer main.vala ../../librpg/vala/rpg.vapi --basedir ./
 
 }
@@ -32,16 +32,14 @@ function do_compile_windows {
 	
 	echo ""
 	echo ""	
-	echo "CROSSCOMPILING C CODE TO $1, CREATING C LIB..."
+	echo "CROSSCOMPILING C CODE FOR windows, CREATING EXECUTABLE..."
 	
-	i486-mingw32-gcc main.c -o rpgviewer.exe -mms-bitfields -I$WIN_PREFIX/include/glib-2.0 -I$WIN_PREFIX/lib/glib-2.0/include -I../../librpg/vala -L$WIN_PREFIX/lib -L$WIN_PREFIX/bin -L../../librpg/vala -lrpg -lgobject-2.0 -lgthread-2.0 -lglib-2.0
-	
-	
+	i486-mingw32-gcc main.c -o rpgviewer.exe -L../../librpg/vala  -I../../librpg/vala -lrpg `pkg-config --define-variable=prefix=$WIN_PREFIX --cflags --libs gobject-2.0`
 }
 
 function do_clean  {
 	
-	rm *.c rpgviewer rpgviewer.exe
+	rm *.c rpgviewer rpgviewer.exe example_generated*.xml
 	
 }
 
